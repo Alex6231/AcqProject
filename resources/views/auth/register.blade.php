@@ -1,23 +1,15 @@
-<!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('template')
+
+@section('page-title')
     <title>Регистрация</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet" type="text/css">
-</head>
-<body id="body">
-    <header>
-        <div class="wrapper"></div>
-    </header>
-    <main>
-        <div class="wrapper">
+@endsection
+
+@section('content')
             <div class="auth_shell-1">
                 <div class="auth_shell-2">
                     <form action="/register" method="post" enctype="multipart/form-data">
                         @csrf
-                    <div class="register_section">
+                    <div class="auth_section">
                         <h2>Данные аккаунта:</h2>
                         <div class="auth_form">
                             <div class="auth_form_item">
@@ -34,7 +26,7 @@
                             </div>
                         </div>
                     </div>
-                        <div class="register_section">
+                        <div class="auth_section">
                             <h2>Расскажите о себе:</h2>
                             <div class="auth_double_container">
                                 <div class="auth_form">
@@ -85,8 +77,8 @@
                                         <input type="file" name="image" id="imageInput">
                                     </div>
                                     <div class="complete_auth_container">
-                                        <input type="submit" value="Зарегистрироваться" >
-                                        <p>Уже есть аккаунт? <a href="#">Войти</a></p>
+                                        <input class="auth_button" type="submit" value="Зарегистрироваться" >
+                                        <p>Уже есть аккаунт? <a href="/login">Войти</a></p>
                                         @if($message = Session::get('error'))
                                             <p class="error_text">{{$message}}</p>
                                         @endif
@@ -102,11 +94,4 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </main>
-    <footer>
-        <div class="wrapper"></div>
-    </footer>
-    <script src="/js/imageShow.js"></script>
-</body>
-</html>
+@endsection

@@ -14,9 +14,19 @@ a {
 
 #body {
     overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #body.lock {
     overflow: hidden;
+}
+
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 ::-webkit-scrollbar {
@@ -39,48 +49,62 @@ a {
     src: url('/fonts/Inter.ttf');
 }
 
-/*for auth*/
+.header, .main, .footer {
+    display: flex;
+}
 
 .wrapper {
     padding: 0 10px;
-    width: 1820px;
-    height: 100%;
-    margin: auto;
+    max-width: 1820px;
     font-family: Inter;
     font-weight: 400;
-    font-size: 36px;
+    flex-grow: 1;
+    margin: auto;
+    height: 100%;
 }
+
+/*for auth*/
 
 .auth_shell-1 {
     border-right: 5px dashed #FF7A00;
     border-left: 5px dashed #FF7A00;
     width: 100%;
-    height: 100%;
+    min-height: 90vh;
     padding: 0 25px;
 }
 .auth_shell-2 {
     border-right: 5px dashed #FF7A00;
     border-left: 5px dashed #FF7A00;
     width: 100%;
-    height: 100%;
+    min-height: 90vh;
     padding: 0 50px;
+    font-size: 36px;
+}
+.auth_shell-2.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.register_section {
-    margin: 20px 0;
+.auth_section {
     padding: 5px 0;
     display: flex;
     flex-direction: column;
     gap: 20px;
     color: #203856;
+    justify-content: center;
+    align-items: center;
 }
-.register_section h2 {
+.auth_section h2 {
     text-align: center;
     font-size: 64px;
 }
-.register_section h3 {
+.auth_section h3 {
     text-align: center;
     font-size: 50px;
+}
+.auth_section + .auth_section {
+    margin: 20px 0;
 }
 
 .auth_form {
@@ -206,6 +230,7 @@ a {
     padding: 20px 10px;
     text-align: center;
     display: block;
+    transition: .3s;
 }
 
 #imageShowField {
@@ -223,24 +248,16 @@ a {
     object-fit: cover;
 }
 .avatar_loader:hover #imageShowField {
-    opacity: 0;
-    z-index: -1;
+    opacity: 0.9;
+}
+.avatar_loader:hover label {
+    z-index: 3;
 }
 
 .complete_auth_container {
     display: flex;
     flex-direction: column;
     gap: 5px;
-}
-.complete_auth_container input {
-    background: #C9F4F5;
-    color: #000;
-    text-align: center;
-    padding: 30px 20px;
-    cursor: pointer;
-    border-radius: 10px;
-    font-size: 36px;
-    max-width: 500px;
 }
 .complete_auth_container p {
     color: #000;
@@ -259,6 +276,32 @@ a {
     color: red;
     font-size: 25px;
     text-align: center;
+}
+
+.login_container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login_container .auth_form {
+    width: unset;
+}
+
+.auth_button {
+    background: #C9F4F5;
+    color: #000;
+    text-align: center;
+    padding: 30px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 36px;
+    transition: .3s;
+}
+.auth_button:hover {
+    transform: scale(1.05);
 }
 
 /*---*/
@@ -299,6 +342,104 @@ a {
 }
 .popup_background_inner_container h3 {
     font-size: 50px;
+}
+
+/*---*/
+
+/*for header and footer*/
+
+.header-logo_container {
+    display: flex;
+    margin: auto;
+    gap: 10px;
+    align-items: center;
+    flex-direction: row;
+    user-select: none;
+    cursor: default;
+    pointer-events: none;
+}
+.header-logo_container img {
+    border-radius: 50%;
+    width: 70px;
+}
+.header-logo_container h1 {
+    font-size: 25px;
+    color: #c9f4f5;
+    text-transform: uppercase;
+}
+
+.header, .footer {
+    width: 100vw;
+}
+
+.menu-button {
+    position: relative;
+    color: #c9f4f5;
+    font-size: 25px;
+}
+.menu-button::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    background: #c9f4f5;
+    height: 2px;
+    width: 0;
+    transition: .3s;
+}
+.menu-button:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.header {
+    background: #203856;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.header .wrapper, .footer .wrapper {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    align-items: center;
+}
+
+.header_auth-buttons {
+    display: flex;
+    gap: 15px;
+    flex-direction: row;
+}
+
+.footer {
+    background: #203856;
+    color: #c9f4f5;
+}
+
+.footer .wrapper img {
+    border-radius: 10px;
+    width: 300px;
+}
+
+.footer_buttons li+li {
+    margin: 15px 0;
+}
+
+/*---*/
+
+/*for main*/
+
+.main {
+    flex-grow: 1;
+    display: flex;
+}
+
+.main .wrapper {
+    padding: 25px 10px;
+    width: 100vw;
+    min-height: 90vh;
 }
 
 /*---*/
