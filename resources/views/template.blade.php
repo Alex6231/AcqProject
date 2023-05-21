@@ -42,6 +42,6 @@
         <img src="{{ asset('images/logo_with-name.jpg') }}" alt="logo">
     </div>
 </footer>
-<script src="{{ asset('js/imageShow.js') }}"></script>
+@yield('scripts')
 </body>
 </html>

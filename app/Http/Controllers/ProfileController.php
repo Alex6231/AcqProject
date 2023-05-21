@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,5 +57,23 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function like($id, Request $request) {
+        $user = $request->user();
+        $likes = explode($user->likes, ";");
+        if ($user->id != $id) {
+            if (not(in_array($id, $likes))) {
+                User::query()->where("id", "=", $user->id)->update(["likes", $user->likes.";".$id]);
+            }
+            else {
+                unset($likes[array_search($id, $likes)]);
+                $likes_string = "";
+                foreach ($likes as $like) {
+                    $likes_string.=$like.";";
+                }
+                User::query()->where("id", "=", $user->id)->update(["likes", $likes_string]);
+            }
+        }
     }
 }

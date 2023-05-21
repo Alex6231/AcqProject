@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $users_not_full = \App\Models\User::query()->select("name", "image_path", "gender", "hobbies", "looking_for", "extra_info", "contacts_vk", "contacts_whatsapp", "contacts_telegram")->get();
+    $users_not_full = \App\Models\User::query()->select("id", "name", "image_path", "age", "gender", "hobbies", "looking_for", "extra_info", "contacts_vk", "contacts_whatsapp", "contacts_telegram")->get();
     return view('pages.mainPage', ['users'=>$users_not_full]);
 })->middleware(['auth', 'verified']);
 
@@ -31,5 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';

@@ -4,6 +4,10 @@
     <title>Регистрация</title>
 @endsection
 
+@section('scripts')
+    <script src="{{ asset('js/imageShow.js') }}"></script>
+@endsection
+
 @section('content')
             <div class="auth_shell-1">
                 <div class="auth_shell-2">
@@ -33,6 +37,10 @@
                                     <div class="auth_form_item">
                                         <label for="name">Имя:</label>
                                         <input id="name" type="text" name="name">
+                                    </div>
+                                    <div class="auth_form_item">
+                                        <label for="age">Возраст:</label>
+                                        <input id="age" name="age">
                                     </div>
                                     <div class="auth_form_item">
                                         <label for="gender">Пол:</label>
@@ -67,7 +75,7 @@
                                         <label for="contacts_telegram">
                                             <i class="fa fa-telegram"></i>
                                         </label>
-                                        <input id="contacts_telegram" name="contacts_telegram" placeholder="Ваш юзернейм"/>
+                                        <input id="contacts_telegram" name="contacts_telegram" placeholder="Ваш юзернейм (без @)"/>
                                     </div>
                                 </div>
                                 <div class="auth_double_container_inner">

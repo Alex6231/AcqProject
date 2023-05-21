@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('image_path');
+            $table->string('age');
             $table->string('gender');
             $table->string('hobbies');
             $table->text('looking_for');
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->string('contacts_vk')->nullable();
             $table->string('contacts_whatsapp')->nullable();
             $table->string('contacts_telegram')->nullable();
+            $table->text('likes')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
