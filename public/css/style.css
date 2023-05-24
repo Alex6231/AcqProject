@@ -48,26 +48,33 @@ ul, li {
     font-style: normal;
     src: url('/fonts/Inter.ttf');
 }
-h1, i {
-    font-size: 36px;
+h1 {
+    font-size: 24px;
 }
 h2 {
-    font-size: 34px;
+    font-size: 22px;
 }
 h3 {
-    font-size: 32px;
+    font-size: 20px;
 }
 p, a, label, input, textarea {
-    font-size: 30px;
+    font-size: 16px;
 }
 
-.header, .main, .footer {
+.header_container, .footer_container {
     display: flex;
+}
+
+.line-group {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
 }
 
 .wrapper {
     padding: 0 10px;
-    max-width: 1820px;
+    max-width: 1400px;
     font-family: Inter;
     font-weight: 400;
     flex-grow: 1;
@@ -370,9 +377,43 @@ p, a, label, input, textarea {
     width: 100vw;
 }
 
+i.burger-menu-button {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    color: #c9f4f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+}
+i.burger-menu-button.active {
+    transform: rotate(180deg);
+}
+
+.burger-menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    top: -100vh;
+    right: 0;
+    padding: 110px 10px 10px 10px;
+    z-index: -2;
+    background: #203856;
+    transition: .3s;
+    opacity: 0;
+}
+.burger-menu.active {
+    top: 0;
+    opacity: 1;
+}
+
 .menu-button {
     position: relative;
     color: #c9f4f5;
+    text-transform: uppercase;
 }
 .menu-button::after {
     content: "";
@@ -394,14 +435,18 @@ p, a, label, input, textarea {
     position: sticky;
     top: 0;
     z-index: 5;
+    height: 100px;
 }
 
-.header .wrapper, .footer .wrapper {
+.header_container, .footer_container {
     justify-content: space-between;
     display: flex;
     flex-direction: row;
     padding: 15px;
     align-items: center;
+}
+.header_container {
+    position: relative;
 }
 
 .header_auth-buttons {
@@ -415,7 +460,7 @@ p, a, label, input, textarea {
     color: #c9f4f5;
 }
 
-.footer .wrapper img {
+.footer_container img {
     border-radius: 10px;
     width: 300px;
 }
@@ -456,8 +501,7 @@ p, a, label, input, textarea {
     border: 3px solid #203856;
     padding: 0 10px 0 100px;
     color: #203856;
-    max-width: 750px;
-    height: 600px;
+    max-width: 50%;
     cursor: pointer;
     transition: .3s;
     position: relative;
@@ -577,7 +621,6 @@ p, a, label, input, textarea {
 
 .profile_image_box img{
     max-width: 250px;
-    height: 300px;
     border: 3px solid #203856;
     border-radius: 10px;
     object-position: center;

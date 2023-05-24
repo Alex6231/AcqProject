@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('page-title')
-    <title>Главная</title>
+    <title>Симпатии</title>
 @endsection
 
 @section('scripts')
@@ -9,14 +9,15 @@
 @endsection
 
 @section('content')
-        <div class="users_container">
-            @csrf
+    <div class="users_container">
+        @csrf
+        @if($likes[0]>0)
             @foreach($users as $user)
-                @if($user->id != Auth::user()->id)
+                @if($user->id != Auth::user()->id and in_array($user->id, $likes))
                     <div class="users_block">
                         <div class="users_block_menu">
                             <i class="fa fa-info users_block_menu_icon" id="infoButton"></i>
-                            <i class="fa fa-heart users_block_menu_icon likeButton @if(in_array($user->id, $likes)) active @endif" id="{{$user->id}}"></i>
+                            <i class="fa fa-heart users_block_menu_icon likeButton active" id="{{$user->id}}"></i>
                         </div>
                         <div class="users_block_inner">
                             <div class="users_block_inner-left">
@@ -45,5 +46,8 @@
                     </div>
                 @endif
             @endforeach
-        </div>
+        @else
+            <h2>Похоже, у вас нет симпатий...</h2>
+        @endif
+    </div>
 @endsection

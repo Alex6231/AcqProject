@@ -59,20 +59,28 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function like($id, Request $request) {
+    public function like(Request $request) {
         $user = $request->user();
-        $likes = explode($user->likes, ";");
+        $id = $request->id;
+        if (isset($user->likes)) {
+            $likes = explode(";", $user->likes);
+        }
+        else {
+            $likes = [];
+        }
         if ($user->id != $id) {
-            if (not(in_array($id, $likes))) {
-                User::query()->where("id", "=", $user->id)->update(["likes", $user->likes.";".$id]);
+            if (in_array($id, $likes)===false) {
+                User::query()->where("id", "=", $user->id)->update(["likes" => $user->likes.";".$id]);
             }
             else {
                 unset($likes[array_search($id, $likes)]);
                 $likes_string = "";
                 foreach ($likes as $like) {
-                    $likes_string.=$like.";";
+                    if(isset($like)) {
+                        $likes_string.=$like.";";
+                    }
                 }
-                User::query()->where("id", "=", $user->id)->update(["likes", $likes_string]);
+                User::query()->where("id", "=", $user->id)->update(["likes" => $likes_string]);
             }
         }
     }
